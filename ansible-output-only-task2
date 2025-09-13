@@ -1,0 +1,77 @@
+allower@MacBookAir ansible 2 % ansible-playbook site.yml -i inventory.ini 
+
+PLAY [monitoring] *****************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************
+[WARNING]: Host 'monitor1' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.19/reference_appendices/interpreter_discovery.html for more information.
+ok: [monitor1]
+
+TASK [node_exporter : Create node_exporter user] **********************************************************************************************
+ok: [monitor1]
+
+TASK [node_exporter : Create directory] *******************************************************************************************************
+ok: [monitor1]
+
+TASK [node_exporter : Download Node Exporter] *************************************************************************************************
+changed: [monitor1]
+
+TASK [node_exporter : Extract Node Exporter] **************************************************************************************************
+ok: [monitor1]
+
+TASK [node_exporter : Deploy systemd unit] ****************************************************************************************************
+ok: [monitor1]
+
+TASK [node_exporter : Reload systemd] *********************************************************************************************************
+ok: [monitor1]
+
+TASK [node_exporter : Enable and start node_exporter] *****************************************************************************************
+ok: [monitor1]
+
+TASK [prometheus : Create prometheus user] ****************************************************************************************************
+ok: [monitor1]
+
+TASK [prometheus : Create directories] ********************************************************************************************************
+ok: [monitor1] => (item=)
+ok: [monitor1] => (item=data)
+
+TASK [prometheus : Download Prometheus] *******************************************************************************************************
+changed: [monitor1]
+
+TASK [prometheus : Extract Prometheus] ********************************************************************************************************
+changed: [monitor1]
+
+TASK [prometheus : Deploy Prometheus config] **************************************************************************************************
+changed: [monitor1]
+
+TASK [prometheus : Deploy systemd unit] *******************************************************************************************************
+ok: [monitor1]
+
+TASK [prometheus : Reload systemd] ************************************************************************************************************
+ok: [monitor1]
+
+TASK [prometheus : Enable and start prometheus] ***********************************************************************************************
+ok: [monitor1]
+
+TASK [grafana : Create grafana user] **********************************************************************************************************
+ok: [monitor1]
+
+TASK [grafana : Create grafana directory] *****************************************************************************************************
+ok: [monitor1]
+
+TASK [grafana : Download Grafana] *************************************************************************************************************
+changed: [monitor1]
+
+TASK [grafana : Extract Grafana] **************************************************************************************************************
+ok: [monitor1]
+
+TASK [grafana : Deploy systemd unit] **********************************************************************************************************
+ok: [monitor1]
+
+TASK [grafana : Reload systemd] ***************************************************************************************************************
+ok: [monitor1]
+
+TASK [grafana : Enable and start grafana] *****************************************************************************************************
+ok: [monitor1]
+
+PLAY RECAP ************************************************************************************************************************************
+monitor1                   : ok=23   changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
