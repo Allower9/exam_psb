@@ -1,0 +1,97 @@
+allower@MacBookAir ansible % ansible-playbook site.yml -i inventory.ini --limit ansible_full
+
+
+PLAY [monitoring] *****************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************
+[WARNING]: Host 'ansible1' is using the discovered Python interpreter at '/usr/bin/python3.12', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.19/reference_appendices/interpreter_discovery.html for more information.
+ok: [ansible1]
+
+TASK [common : Set hostname] ******************************************************************************************************************
+changed: [ansible1]
+
+TASK [common : Configure timezone] ************************************************************************************************************
+changed: [ansible1]
+
+TASK [common : installed] *********************************************************************************************************************
+ok: [ansible1]
+
+TASK [common : enable NTP] ********************************************************************************************************************
+ok: [ansible1]
+
+TASK [common : start systemd-timesyncd] *******************************************************************************************************
+ok: [ansible1]
+
+TASK [common : update apt cache] **************************************************************************************************************
+skipping: [ansible1]
+
+TASK [node_exporter : Create node_exporter user] **********************************************************************************************
+changed: [ansible1]
+
+TASK [node_exporter : Create directory] *******************************************************************************************************
+changed: [ansible1]
+
+TASK [node_exporter : Download Node Exporter] *************************************************************************************************
+changed: [ansible1]
+
+TASK [node_exporter : Extract Node Exporter] **************************************************************************************************
+changed: [ansible1]
+
+TASK [node_exporter : Deploy systemd unit] ****************************************************************************************************
+changed: [ansible1]
+
+TASK [node_exporter : Reload systemd] *********************************************************************************************************
+ok: [ansible1]
+
+TASK [node_exporter : Enable and start node_exporter] *****************************************************************************************
+changed: [ansible1]
+
+TASK [prometheus : Create prometheus user] ****************************************************************************************************
+changed: [ansible1]
+
+TASK [prometheus : Create directories] ********************************************************************************************************
+changed: [ansible1] => (item=)
+changed: [ansible1] => (item=data)
+
+TASK [prometheus : Download Prometheus] *******************************************************************************************************
+changed: [ansible1]
+
+TASK [prometheus : Extract Prometheus] ********************************************************************************************************
+changed: [ansible1]
+
+TASK [prometheus : Deploy Prometheus config] **************************************************************************************************
+changed: [ansible1]
+
+TASK [prometheus : Deploy systemd unit] *******************************************************************************************************
+changed: [ansible1]
+
+TASK [prometheus : Reload systemd] ************************************************************************************************************
+ok: [ansible1]
+
+TASK [prometheus : Enable and start prometheus] ***********************************************************************************************
+changed: [ansible1]
+
+TASK [grafana : Create grafana user] **********************************************************************************************************
+changed: [ansible1]
+
+TASK [grafana : Create grafana directory] *****************************************************************************************************
+changed: [ansible1]
+
+TASK [grafana : Download Grafana] *************************************************************************************************************
+changed: [ansible1]
+
+TASK [grafana : Extract Grafana] **************************************************************************************************************
+changed: [ansible1]
+
+TASK [grafana : Deploy systemd unit] **********************************************************************************************************
+changed: [ansible1]
+
+TASK [grafana : Reload systemd] ***************************************************************************************************************
+ok: [ansible1]
+
+TASK [grafana : Enable and start grafana] *****************************************************************************************************
+changed: [ansible1]
+
+PLAY RECAP ************************************************************************************************************************************
+ansible1                   : ok=28   changed=21   unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
