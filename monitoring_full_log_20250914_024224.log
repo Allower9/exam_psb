@@ -1,0 +1,214 @@
+=== МОНИТОРИНГ ЛОГ - Sun Sep 14 02:42:24 UTC 2025 ===
+
+=== ПРОВЕРКА КОНФИГУРАЦИИ PROMETHEUS ===
+Checking /srv/prometheus/prometheus.yml
+ SUCCESS: /srv/prometheus/prometheus.yml is valid prometheus config file syntax
+
+
+=== СТАТУС СЛУЖБ ===
+● Grafana:
+● grafana.service - Grafana
+     Loaded: loaded (/etc/systemd/system/grafana.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2025-09-14 02:29:42 UTC; 12min ago
+   Main PID: 3077 (grafana)
+      Tasks: 16 (limit: 4653)
+     Memory: 44.2M (peak: 55.6M)
+        CPU: 3.406s
+     CGroup: /system.slice/grafana.service
+             └─3077 grafana server --homepath=/srv/grafana
+
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=http.server t=2025-09-14T02:29:59.364106169Z level=info msg="HTTP Server Listen" address=[::]:3000 protocol=http subUrl= socket=
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=plugins.update.checker t=2025-09-14T02:29:59.50929629Z level=info msg="Update check succeeded" duration=146.639193ms
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=grafana.update.checker t=2025-09-14T02:29:59.519010952Z level=info msg="Update check succeeded" duration=156.904346ms
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=plugin.angulardetectorsprovider.dynamic t=2025-09-14T02:29:59.589814647Z level=info msg="Patterns update finished" duration=161.231128ms
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=grafana-apiserver t=2025-09-14T02:29:59.800265955Z level=info msg="Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager"
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=grafana-apiserver t=2025-09-14T02:29:59.800857875Z level=info msg="Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager"
+Sep 14 02:30:48 vm-for-only-bash-script grafana-server[3077]: logger=infra.usagestats t=2025-09-14T02:30:48.367805766Z level=info msg="Usage stats are ready to report"
+Sep 14 02:38:19 vm-for-only-bash-script grafana-server[3077]: logger=context userId=0 orgId=0 uname= t=2025-09-14T02:38:19.443462193Z level=info msg="Request Completed" method=GET path=/ status=302 remote_addr=205.210.31.92 time_ms=0 duration=126.966µs size=29 referer= handler=/ status_source=server
+Sep 14 02:39:59 vm-for-only-bash-script grafana-server[3077]: logger=cleanup t=2025-09-14T02:39:59.373414826Z level=info msg="Completed cleanup jobs" duration=11.345465ms
+Sep 14 02:39:59 vm-for-only-bash-script grafana-server[3077]: logger=plugins.update.checker t=2025-09-14T02:39:59.615298116Z level=info msg="Update check succeeded" duration=105.42594ms
+
+● Prometheus:
+● prometheus.service - Prometheus
+     Loaded: loaded (/etc/systemd/system/prometheus.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2025-09-14 02:23:34 UTC; 18min ago
+   Main PID: 2817 (prometheus)
+      Tasks: 10 (limit: 4653)
+     Memory: 25.6M (peak: 26.6M)
+        CPU: 678ms
+     CGroup: /system.slice/prometheus.service
+             └─2817 /srv/prometheus/prometheus --config.file=/srv/prometheus/prometheus.yml --storage.tsdb.path=/srv/prometheus/data --storage.tsdb.retention.size=10GB --storage.tsdb.retention.time=15d
+
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.319Z caller=head.go:721 level=info component=tsdb msg="Replaying WAL, this may take a while"
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.319Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=0
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.319Z caller=head.go:830 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=31.327µs wal_replay_duration=312.623µs wbl_replay_duration=169ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=1.632µs total_replay_duration=367.705µs
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.322Z caller=main.go:1181 level=info fs_type=EXT4_SUPER_MAGIC
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.322Z caller=main.go:1184 level=info msg="TSDB started"
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.322Z caller=main.go:1367 level=info msg="Loading configuration file" filename=/srv/prometheus/prometheus.yml
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.323Z caller=main.go:1404 level=info msg="updated GOGC" old=100 new=75
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.323Z caller=main.go:1415 level=info msg="Completed loading of configuration file" filename=/srv/prometheus/prometheus.yml totalDuration=591.152µs db_storage=1.196µs remote_storage=1.388µs web_handler=539ns query_engine=5.831µs scrape=180.326µs scrape_sd=20.83µs notify=30.691µs notify_sd=10.635µs rules=2.192µs tracing=7.354µs
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.323Z caller=main.go:1145 level=info msg="Server is ready to receive web requests."
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.323Z caller=manager.go:164 level=info component="rule manager" msg="Starting rule manager..."
+
+● Node Exporter:
+● node_exporter.service - Node Exporter
+     Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2025-09-14 02:13:02 UTC; 29min ago
+   Main PID: 2495 (node_exporter)
+      Tasks: 5 (limit: 4653)
+     Memory: 4.8M (peak: 6.0M)
+        CPU: 50ms
+     CGroup: /system.slice/node_exporter.service
+             └─2495 /srv/node_exporter/node_exporter --web.listen-address=:9100
+
+Sep 14 02:13:02 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:13:02.816Z caller=node_exporter.go:118 level=info collector=time
+Sep 14 02:13:02 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:13:02.816Z caller=node_exporter.go:118 level=info collector=timex
+Sep 14 02:13:02 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:13:02.816Z caller=node_exporter.go:118 level=info collector=udp_queues
+Sep 14 02:13:02 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:13:02.816Z caller=node_exporter.go:118 level=info collector=uname
+Sep 14 02:13:02 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:13:02.816Z caller=node_exporter.go:118 level=info collector=vmstat
+Sep 14 02:13:02 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:13:02.816Z caller=node_exporter.go:118 level=info collector=watchdog
+Sep 14 02:13:02 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:13:02.816Z caller=node_exporter.go:118 level=info collector=xfs
+Sep 14 02:13:02 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:13:02.816Z caller=node_exporter.go:118 level=info collector=zfs
+Sep 14 02:13:02 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:13:02.817Z caller=tls_config.go:313 level=info msg="Listening on" address=[::]:9100
+Sep 14 02:13:02 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:13:02.817Z caller=tls_config.go:316 level=info msg="TLS is disabled." http2=false address=[::]:9100
+
+=== ПРОВЕРКА МЕТРИК ЭКСПОРТЕРОВ ===
+● Node Exporter метрики (первые 20 строк):
+# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile="0"} 2.2208e-05
+go_gc_duration_seconds{quantile="0.25"} 3.1646e-05
+go_gc_duration_seconds{quantile="0.5"} 3.3401e-05
+go_gc_duration_seconds{quantile="0.75"} 3.5355e-05
+go_gc_duration_seconds{quantile="1"} 6.0013e-05
+go_gc_duration_seconds_sum 0.000414226
+go_gc_duration_seconds_count 12
+# HELP go_goroutines Number of goroutines that currently exist.
+# TYPE go_goroutines gauge
+go_goroutines 7
+# HELP go_info Information about the Go environment.
+# TYPE go_info gauge
+go_info{version="go1.22.3"} 1
+# HELP go_memstats_alloc_bytes Number of bytes allocated and still in use.
+# TYPE go_memstats_alloc_bytes gauge
+go_memstats_alloc_bytes 706792
+# HELP go_memstats_alloc_bytes_total Total number of bytes allocated, even if freed.
+# TYPE go_memstats_alloc_bytes_total counter
+
+● Prometheus метрики (первые 20 строк):
+# HELP go_gc_cycles_automatic_gc_cycles_total Count of completed GC cycles generated by the Go runtime.
+# TYPE go_gc_cycles_automatic_gc_cycles_total counter
+go_gc_cycles_automatic_gc_cycles_total 14
+# HELP go_gc_cycles_forced_gc_cycles_total Count of completed GC cycles forced by the application.
+# TYPE go_gc_cycles_forced_gc_cycles_total counter
+go_gc_cycles_forced_gc_cycles_total 0
+# HELP go_gc_cycles_total_gc_cycles_total Count of all completed GC cycles.
+# TYPE go_gc_cycles_total_gc_cycles_total counter
+go_gc_cycles_total_gc_cycles_total 14
+# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile="0"} 4.6928e-05
+go_gc_duration_seconds{quantile="0.25"} 5.2037e-05
+go_gc_duration_seconds{quantile="0.5"} 7.2768e-05
+go_gc_duration_seconds{quantile="0.75"} 0.000112374
+go_gc_duration_seconds{quantile="1"} 0.000223696
+go_gc_duration_seconds_sum 0.001300769
+go_gc_duration_seconds_count 14
+# HELP go_gc_gogc_percent Heap size target percentage configured by the user, otherwise 100. This value is set by the GOGC environment variable, and the runtime/debug.SetGCPercent function.
+# TYPE go_gc_gogc_percent gauge
+
+=== ЛОГИ СЛУЖБ (последние 20 записей) ===
+● Логи Grafana:
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=provisioning.alerting t=2025-09-14T02:29:59.361203473Z level=info msg="finished to provision alerting"
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=ngalert.state.manager t=2025-09-14T02:29:59.361329929Z level=info msg="Warming state cache for startup"
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=renderer.manager t=2025-09-14T02:29:59.361506074Z level=error msg="Failed to get renderer plugin sources" error="failed to open plugins path"
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=ngalert.state.manager t=2025-09-14T02:29:59.36169662Z level=info msg="State cache has been initialized" states=0 duration=367.078µs
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=ngalert.multiorg.alertmanager t=2025-09-14T02:29:59.361768757Z level=info msg="Starting MultiOrg Alertmanager"
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=ngalert.scheduler t=2025-09-14T02:29:59.361806929Z level=info msg="Starting scheduler" tickInterval=10s maxAttempts=1
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=ticker t=2025-09-14T02:29:59.361851662Z level=info msg=starting first_tick=2025-09-14T02:30:00Z
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=provisioning.dashboard t=2025-09-14T02:29:59.362197717Z level=info msg="starting to provision dashboards"
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=provisioning.dashboard t=2025-09-14T02:29:59.362226504Z level=info msg="finished to provision dashboards"
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=grafanaStorageLogger t=2025-09-14T02:29:59.362293844Z level=info msg="Storage starting"
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=http.server t=2025-09-14T02:29:59.364106169Z level=info msg="HTTP Server Listen" address=[::]:3000 protocol=http subUrl= socket=
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=plugins.update.checker t=2025-09-14T02:29:59.50929629Z level=info msg="Update check succeeded" duration=146.639193ms
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=grafana.update.checker t=2025-09-14T02:29:59.519010952Z level=info msg="Update check succeeded" duration=156.904346ms
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=plugin.angulardetectorsprovider.dynamic t=2025-09-14T02:29:59.589814647Z level=info msg="Patterns update finished" duration=161.231128ms
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=grafana-apiserver t=2025-09-14T02:29:59.800265955Z level=info msg="Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager"
+Sep 14 02:29:59 vm-for-only-bash-script grafana-server[3077]: logger=grafana-apiserver t=2025-09-14T02:29:59.800857875Z level=info msg="Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager"
+Sep 14 02:30:48 vm-for-only-bash-script grafana-server[3077]: logger=infra.usagestats t=2025-09-14T02:30:48.367805766Z level=info msg="Usage stats are ready to report"
+Sep 14 02:38:19 vm-for-only-bash-script grafana-server[3077]: logger=context userId=0 orgId=0 uname= t=2025-09-14T02:38:19.443462193Z level=info msg="Request Completed" method=GET path=/ status=302 remote_addr=205.210.31.92 time_ms=0 duration=126.966µs size=29 referer= handler=/ status_source=server
+Sep 14 02:39:59 vm-for-only-bash-script grafana-server[3077]: logger=cleanup t=2025-09-14T02:39:59.373414826Z level=info msg="Completed cleanup jobs" duration=11.345465ms
+Sep 14 02:39:59 vm-for-only-bash-script grafana-server[3077]: logger=plugins.update.checker t=2025-09-14T02:39:59.615298116Z level=info msg="Update check succeeded" duration=105.42594ms
+
+● Логи Prometheus:
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.309Z caller=main.go:650 level=info build_context="(go=go1.22.6, platform=linux/amd64, user=root@68a9e2472a68, date=20240809-11:36:32, tags=netgo,builtinassets,stringlabels)"
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.309Z caller=main.go:651 level=info host_details="(Linux 6.8.0-79-generic #79-Ubuntu SMP PREEMPT_DYNAMIC Tue Aug 12 14:42:46 UTC 2025 x86_64 vm-for-only-bash-script (none))"
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.309Z caller=main.go:652 level=info fd_limits="(soft=524288, hard=524288)"
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.309Z caller=main.go:653 level=info vm_limits="(soft=unlimited, hard=unlimited)"
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.312Z caller=web.go:571 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.312Z caller=main.go:1160 level=info msg="Starting TSDB ..."
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.317Z caller=tls_config.go:313 level=info component=web msg="Listening on" address=[::]:9090
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.317Z caller=tls_config.go:316 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.319Z caller=head.go:626 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.319Z caller=head.go:713 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=1.632µs
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.319Z caller=head.go:721 level=info component=tsdb msg="Replaying WAL, this may take a while"
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.319Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=0
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.319Z caller=head.go:830 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=31.327µs wal_replay_duration=312.623µs wbl_replay_duration=169ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=1.632µs total_replay_duration=367.705µs
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.322Z caller=main.go:1181 level=info fs_type=EXT4_SUPER_MAGIC
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.322Z caller=main.go:1184 level=info msg="TSDB started"
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.322Z caller=main.go:1367 level=info msg="Loading configuration file" filename=/srv/prometheus/prometheus.yml
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.323Z caller=main.go:1404 level=info msg="updated GOGC" old=100 new=75
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.323Z caller=main.go:1415 level=info msg="Completed loading of configuration file" filename=/srv/prometheus/prometheus.yml totalDuration=591.152µs db_storage=1.196µs remote_storage=1.388µs web_handler=539ns query_engine=5.831µs scrape=180.326µs scrape_sd=20.83µs notify=30.691µs notify_sd=10.635µs rules=2.192µs tracing=7.354µs
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.323Z caller=main.go:1145 level=info msg="Server is ready to receive web requests."
+Sep 14 02:23:34 vm-for-only-bash-script prometheus[2817]: ts=2025-09-14T02:23:34.323Z caller=manager.go:164 level=info component="rule manager" msg="Starting rule manager..."
+
+● Логи Node Exporter:
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+Sep 14 02:42:24 vm-for-only-bash-script node_exporter[2495]: ts=2025-09-14T02:42:24.695Z caller=stdlib.go:105 level=error caller="error encoding and sending metric family: write tcp [::1" msg="]:9100->[::1]:48006: write: broken pipe"
+
+=== ПРОВЕРКА ПОРТОВ ===
+● Порт 3000 (Grafana):
+tcp   LISTEN 0      4096                  *:3000            *:*    users:(("grafana",pid=3077,fd=17))                     
+● Порт 9090 (Prometheus):
+tcp   LISTEN 0      4096                  *:9090            *:*    users:(("prometheus",pid=2817,fd=7))                   
+● Порт 9100 (Node Exporter):
+tcp   LISTEN 0      4096                  *:9100            *:*    users:(("node_exporter",pid=2495,fd=3))                
+
+=== ВЕРСИИ КОМПОНЕНТОВ ===
+● Prometheus:
+prometheus, version 2.54.0 (branch: HEAD, revision: 5354e87a70d3eb26b81b601b286d66ff983990f6)
+  build user:       root@68a9e2472a68
+  build date:       20240809-11:36:32
+  go version:       go1.22.6
+  platform:         linux/amd64
+  tags:             netgo,builtinassets,stringlabels
+● Node Exporter:
+node_exporter, version 1.8.1 (branch: HEAD, revision: 400c3979931613db930ea035f39ce7b377cdbb5b)
+  build user:       root@7afbff271a3f
+  build date:       20240521-18:36:22
+  go version:       go1.22.3
+  platform:         linux/amd64
+  tags:             unknown
+● Grafana:
+Deprecation warning: The standalone 'grafana-server' program is deprecated and will be removed in the future. Please update all uses of 'grafana-server' to 'grafana server'
+Version 11.2.0 (commit: c57667e4481563f5e6cf945b03bc0626caa4dbeb, branch: HEAD)
+
+=== ЛОГ ЗАВЕРШЕН ===
